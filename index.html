@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 class="my-class">The input form attribute</h1>
+
+    <p class="my-class">The form attribute specifies the form an input element belongs to.</p>
+
+    <form action="/action_page.php" id="form1">
+        <label for="fname">First name:</label>
+        <input type="text" id="fname" name="fname"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <p>The "Last name" field below is outside the form element, but still part of the form.</p>
+
+    <label for="lname">Last name:</label>
+    <input type="text" id="lname" name="lname" form="form1">
+
+    <script>
+
+        // 1) Дан массив const arr = [1, 5, 7, 9] с помощью Math.min и spread оператора, 
+        // найти минимальное число в массиве, решение задание должно состоять из одной строки
+
+        const arr = [1, 5, 7, 9];
+        console.log(Math.min(...arr));
+
+        // 2) Напишите функцию createCounter, которая создает счетчик и возвращает объект с 
+        // двумя методами: increment и decrement.Метод increment должен увеличивать значение
+        //  счетчика на 1, а метод decrement должен уменьшать значение счетчика на 1.
+        //   Значение счетчика должно быть доступно только через методы объекта, а не напрямую.
+
+        function createCounter() {
+            let count = 0;
+            function increment() {
+                count++;
+                console.log(count);
+            }
+            function decrement() {
+                count--;
+                console.log(count);
+            }
+            return {
+                increment: increment,
+                decrement: decrement
+            };
+        }
+
+        let counter = createCounter();
+        counter.increment([]);
+        counter.increment([]);
+        counter.decrement([]);
+
+        // 3) Напишите рекурсивную функцию findElementByClass, которая принимает корневой
+        //  элемент дерева DOM и название класса в качестве аргументов и возвращает первый
+        //   найденный элемент с указанным классом в этом дереве.
+        //     Пример
+        // const rootElement = document.getElementById('root');
+        // const targetElement = findElementByClass(rootElement, 'my-class');
+        // console.log(targetElement);
+
+        const rootElement = document.querySelector('body');
+        const targetElement = document.querySelector('.my-class');
+
+        console.log(targetElement);
+        function findElement(rootElement, targetElement) {
+            const element = rootElement;
+
+            while (element !== document.body) {
+                if (element.classList.contains(targetElement)) {
+                    break;
+                }
+                element = element.parentNode;
+            }
+            return element;
+            const find = element;
+            element();
+        }
+
+    </script>
+</body>
+
+</html>
