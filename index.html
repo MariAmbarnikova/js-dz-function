@@ -66,22 +66,27 @@
         // console.log(targetElement);
 
         const rootElement = document.querySelector('body');
-        const targetElement = document.querySelector('.my-class');
 
-        console.log(targetElement);
-        function findElement(rootElement, targetElement) {
-            const element = rootElement;
+        function findElement(DOMElement, targetElement) {
+            if (DOMElement.childElementCount >= 1) {
 
-            while (element !== document.body) {
-                if (element.classList.contains(targetElement)) {
-                    break;
+                for (let i = 0; i < DOMElement.childElementCount; i++) {
+                    if (findElement(DOMElement.children[i], targetElement)) {
+                        return true;
+                    } else if (DOMElement.firstElementChild.className === targetElement) {
+                        console.log(DOMElement.firstElementChild);
+                        return true;
+                    } else {
+                        findElement(DOMElement.firstElementChild, targetElement);
+                    }
                 }
-                element = element.parentNode;
             }
-            return element;
-            const find = element;
-            element();
-        }
+            else if (!DOMElement.classList.contains(targetElement)) {
+                console.log(`элемента с классом ${targetElement} нет`);
+                return true;
+            }
+        };
+        findElement(rootElement, 'my-class');
 
     </script>
 </body>
